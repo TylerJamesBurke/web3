@@ -24,9 +24,9 @@ class Item {
 		let actions = document.createElement("div");
         actions.classList.add("item-actions");
         
-        let checkedItem = document.createElement("button")
-        checkedItem.classList.add("complete");
-        checkedItem.innerText = "Complete";
+        let checkedItem = document.createElement("input")
+        checkedItem.type = "checkbox";
+        checkedItem.classList.add("item-name");
         checkedItem.addEventListener("click", () => this.complete(input));
 
 		let updateButton = document.createElement("button");
@@ -39,7 +39,7 @@ class Item {
 		removeButton.innerText = "Remove";
 		removeButton.addEventListener("click", () => this.remove(listItem));
 
-        actions.appendChild(checkedItem);
+        listItem.appendChild(checkedItem);
         actions.appendChild(updateButton);
         actions.appendChild(removeButton);
        
@@ -55,10 +55,14 @@ class Item {
 
     complete (listItem){
 
-        if (listItem.style.textDecoration === "none") {
-            listItem.style.textDecoration = "line-through";
+        if (listItem.style.textDecoration === "line-through") {
+            listItem.style.textDecoration = "none" ;
+            listItem.style.color = "#000";
+            itemInfo.style.fontWeight = "400";
+            
           } else {
-            listItem.style.textDecoration = "none";
+            listItem.style.textDecoration = "line-through";
+            listItem.style.color = "#cfcfcf"
           }
 
         
@@ -81,6 +85,7 @@ function newItem () {
         new Item(itemToAdd.value + " - " + itemInfo.value);
         itemToAdd.value = "";
         itemInfo.value = "";
+       
     }
     
 }
@@ -88,6 +93,28 @@ function newItem () {
 
 
 //saving data
-function saveItemsToFirebase (itemToAdd){
-    db.collection("items").add(itemToAdd.value)
+//function saveItemsToFirebase (itemToAdd){
+ //   db.collection("items").add(itemToAdd)
+//}
+
+
+/*var storedItem = localStorage.newItem();
+function save(){
+    var Item =  itemToAdd.value + itemInfo.value;
+    localStorage.setItem(storedItem, Item);
+    
 }
+
+function get(){
+    localStorage.getItem(storedItem);
+}
+
+
+addButton.addEventListener( 'click', function(e) {
+    e.preventDefault();
+    localStorage.setItem("userName", usernameInput.value);
+    localStorage.setItem("userStatus", statusInput.value);
+    
+    ();
+});
+*/

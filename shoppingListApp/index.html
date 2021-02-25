@@ -7,18 +7,18 @@
 	<title>Shopping List</title>
 
     <link rel="stylesheet" href="style.css" />
-
+    <link rel="stylesheet" href="https://use.typekit.net/vsj2tcu.css">
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
 </head>
-<body>
+<body >
 	<div class="wrapper">
         <h1>Shopping List</h1>
 		<div class="form">
             
-            <input type="text" name="itemToAdd" id="itemToAdd" placeholder="Add Item Name" />
-            <input type="text"  name="description" id="itemInfo" placeholder=" Item Description"/>
-			<button class="btn" id="addButton">+</button>
+            <input type="text" name="itemToAdd" id="itemToAdd" placeholder="Item name" />
+            <input type="text"  name="description" id="itemInfo" placeholder="Description"/>
+			<button  class="btn" id="addButton">Add</button>
 		</div>
 
 		<div class="list" id="list">
@@ -31,7 +31,13 @@
 
 
 
+<!--
+<script src="/__/firebase/4.9.0/firebase-app.js"></script>
+<script src="/__/firebase/4.9.0/firebase-auth.js"></script>
+<script src="/__/firebase/4.9.0/firebase-firestore.js"></script>
+<script src="/__/firebase/init.js"></script>
 <script>
+
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -46,11 +52,10 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
   const db = firebase.firestore();
   db.settings({timestampInSnapshots: true});
-</script>
+</script>-->
 
 <script src="main.js"></script>
 
