@@ -88,10 +88,6 @@ function newItem () {
 
 
 //saving data
-addButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    db.collection('items').add({
-        name: itemToAdd.value,
-        name: itemInfo.value
-    });
-})
+function saveItemsToFirebase (itemToAdd){
+    db.collection("items").add(itemToAdd.value)
+}
