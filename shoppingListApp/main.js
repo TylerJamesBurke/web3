@@ -47,7 +47,12 @@ class Item {
 		listItem.appendChild(actions);
 
 		itemList.appendChild(listItem);
-	}
+    }
+    
+
+
+
+
     complete (listItem){
 
         if (listItem.style.textDecoration === "none") {
@@ -67,6 +72,8 @@ class Item {
 	}
 }
 
+
+// adding item on page
 addButton.addEventListener("click", () => newItem());
 
 function newItem () {
@@ -78,3 +85,13 @@ function newItem () {
     
 }
 
+
+
+//saving data
+addButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    db.collection('items').add({
+        name: itemToAdd.value,
+        name: itemInfo.value
+    });
+})
