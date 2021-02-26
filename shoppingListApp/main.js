@@ -1,6 +1,6 @@
 // Register a service worker, this one located in serviceworker.js
 // A service worker is a piece of code the browser runs behind the scenes.
-/*if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
     console.log('CLIENT: service worker registration in progress.');
     navigator.serviceWorker.register('sw.js').then(function() {
       console.log('CLIENT: service worker registration complete.');
@@ -9,7 +9,7 @@
     });
   } else {
     console.log('CLIENT: service workers are not supported.');
-  }*/
+  }
 
 
 
@@ -106,7 +106,7 @@ function newItem () {
     
 }
 
-/*ddButton.addEventListener("click", (e) =>{
+addButton.addEventListener("click", (e) =>{
     const nameToFirestore = itemToAdd.value;
     const noteToFirestore = itemInfo.value;
     db.collection("items").add({
@@ -120,7 +120,7 @@ function newItem () {
         console.log("got an error: ", error);
     });
   })
-*/
+
 
 
 
