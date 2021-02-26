@@ -1,3 +1,19 @@
+// Register a service worker, this one located in serviceworker.js
+// A service worker is a piece of code the browser runs behind the scenes.
+/*if ('serviceWorker' in navigator) {
+    console.log('CLIENT: service worker registration in progress.');
+    navigator.serviceWorker.register('sw.js').then(function() {
+      console.log('CLIENT: service worker registration complete.');
+    }, function() {
+      console.log('CLIENT: service worker registration failure.');
+    });
+  } else {
+    console.log('CLIENT: service workers are not supported.');
+  }*/
+
+
+
+
 const itemToAdd = document.getElementById("itemToAdd");
 const itemInfo = document.getElementById("itemInfo");
 const addButton = document.getElementById("addButton");
@@ -58,7 +74,7 @@ class Item {
         if (listItem.style.textDecoration === "line-through") {
             listItem.style.textDecoration = "none" ;
             listItem.style.color = "#000";
-            itemInfo.style.fontWeight = "400";
+            
             
           } else {
             listItem.style.textDecoration = "line-through";
@@ -89,6 +105,34 @@ function newItem () {
     }
     
 }
+
+/*ddButton.addEventListener("click", (e) =>{
+    const nameToFirestore = itemToAdd.value;
+    const noteToFirestore = itemInfo.value;
+    db.collection("items").add({
+        item: nameToFirestore,
+        notes: noteToFirestore,
+        timestamp:firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function(){
+        itemToAdd.value = "";
+        itemInfo.value = "";
+    }).catch(function(){
+        console.log("got an error: ", error);
+    });
+  })
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
