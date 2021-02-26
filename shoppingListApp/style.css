@@ -28,7 +28,7 @@ body {
     -moz-border-radius: 10px;
     border-radius: 10px; 
 }
-.add-button :hover{
+.add-button:hover{
     width:100%;
     height:40px;
     border:none;
@@ -239,7 +239,7 @@ body {
 
 
 /*semi small*/
-@media (min-width:400px){
+@media (min-width:500px){
 
     body {
         font-family:Helvetica, sans-serif;
