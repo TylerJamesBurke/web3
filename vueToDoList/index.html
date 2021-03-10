@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS ToDo List</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+</head>
+<body>
+
+
+    <body>
+        <div class="container">
+            <div id="app">
+              <h1 class="">My Todo List</h1>
+              <div class="card">
+                <div class="flex">
+                  <input v-model="newItem" @keyup.enter="addItem" placeholder="Item" />
+                  <input v-model="description" @keyup.enter="addItem" placeholder="Description"/>
+                  <input v-model="due_date" type="date" />
+                  <button id="btn" @click="addItem" :disabled="newItem.length + description.length === 0">Add</button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-inner">
+                  <h2>Todo</h2>
+                  <ul class="list">
+                    <li class="list-item" :class="{completed: item.completed}" v-for="item in reversedItems">
+                      <div class="list-item-toggle" @click="toggleCompleted(item)"></div>
+                      <div class="list-item-details">
+                        <span style="font-weight:bold">{{ item.name }}</span>
+                        <span class="list-item-time"> {{ item.time}}</span>
+                        <span>{{ item.info}}</span>
+                        
+                      </div>
+                      <div class="list-item-delete" @click="removeItem(item)">X</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+         
+ <script>
+    new Vue( {
+      el: '#app',
+      data: {
+        newItem: '',
+        description:'',
+        due_date:'',
+        items: [ ],
+      },
+
+      mounted(){
+            if(localStorage.items){
+                this.items = JSON.parse(localStorage.items);
+            }
+        },
+        watch:{
+            items: {
+                handler(newItem){
+                    localStorage.items = JSON.stringify(newItem);
+                    /*localStorage.items = JSON.stringify(item.info);
+                    localStorage.items = JSON.stringify(item.time);*/
+                },
+                deep:true
+            },
+        },
+
+
+
+
+      computed: {
+        reversedItems() {
+          return this.items.slice( 0 ).reverse();
+        },
+      },
+      methods: {
+        addItem: function () {
+          this.items.push( {
+            id: this.items.length + 1,
+            name: this.newItem,
+            info: this.description,
+            time: this.due_date,
+            completed: false,
+          } );
+         
+          this.newItem = '';
+        },
+        toggleCompleted: function ( item ) {
+          item.completed = !item.completed;
+        },
+        removeItem: function ( item ) {
+          this.items = this.items.filter( ( newItem ) => newItem.name !== item.name );
+        },
+
+     saveDataLocalStorage: function(item)  {
+        localStorage.setItem(this.items.name, this.items.info);
+        location.reload();
+        console.log(localStorage);
+     }
+      },
+      
+    } );
+
+   /*var btn = document.getElementById("btn");
+        btn.onclick = function(){
+            const iteminfo = items.value;
+            console.log(iteminfo);*/
+  </script>
+
+    
+
+
+
+<script src="style.js"></script>
+</body>
+
+</html> 
