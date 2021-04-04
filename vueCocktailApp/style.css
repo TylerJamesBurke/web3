@@ -1,0 +1,28 @@
+body {
+    font-family: helvetica, arial, sans-serif;
+    margin: 2em;
+  }
+  
+  h1 {
+    font-style: italic;
+    color: #373fff;
+  }
+  
+  #drinksection img{
+    width:100%;
+    height:auto;
+  }
+
+
+  @media (min-width:600px){
+    #drinksection {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: flex-start;
+    }
+    #drinksection img{
+        width:300px;
+        height:auto;
+      } 
+  }
