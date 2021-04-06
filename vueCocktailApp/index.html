@@ -9,8 +9,26 @@
 </head>
 <body>
     <h1>Cocktails</h1>
-    <section id="drinksection"></section>
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>-->
+    <input v-model="newItem" @keyup.enter="searchItem" placeholder="Search drink..." />
+    <button id="btn" @click="searchItem" :disabled="newItem.length  === 0">Search</button>
+
+   
+
+    <section id="drinksection">
+        <!-- <div class="card">
+            <ul>
+                <li v-for="item in currentDrink" v-bind:key="item">
+                    
+                    <h1>{{ item.strDrink }}</h1>
+                    <h2>Ingredients:</h2>
+                    <h3>{{ item.strIngredient1 }}</h3>
+                    <h3>{{ item.strIngredient2 }}</h3>
+                    <h3>{{ item.strIngredient3 }}</h3>
+                </li>
+            </ul>
+         </div>-->
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     <script src="cocktails.js"></script> 
 </body>
 </html>

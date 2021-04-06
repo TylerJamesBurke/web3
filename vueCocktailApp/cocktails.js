@@ -58,3 +58,51 @@ function displayRandomCocktail(cocktail) {
 
   drinkSection.appendChild(instructions);
 }
+
+
+
+/*
+
+new Vue( {
+  el: '#drinkSection',
+  data: function(){
+    return{
+      newItem:'',
+      currentDrink:[],
+      drinkList:[],
+      strDrink:'',
+      strIngredient1:'',
+      strIngredient2:'',
+      strIngredient3:'',
+    }
+  },
+
+
+
+  methods: {
+
+    //search cocktail
+
+    searchDrink(){ 
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.newItem}`)
+      .then(response => response.json())
+      .then(data => {
+ 
+        this.drinkList = data['drinks'];
+      });
+    },
+  
+    displayInfo(cocktail,index){
+      this.strDrink = this.drinkList[index];
+      //displays drink name
+      console.log(this.strDrink['strDrink']);
+      this.currentDrink.push(this.drinkList[index]);
+      console.log(this.currentDrink);
+      console.log(this.drinkList);
+      document.querySelector('.card').style.display = 'block';
+    },
+   
+  }
+  
+});
+*/
