@@ -1,3 +1,4 @@
+/** code
 function getRandomCocktail() {
   fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
     .then(function(response) {
@@ -57,52 +58,85 @@ function displayRandomCocktail(cocktail) {
   instructions.innerHTML = cocktail.drinks[0].strInstructions;
 
   drinkSection.appendChild(instructions);
-}
+}**/
 
 
 
-/*
+
+
+
+
 
 new Vue( {
-  el: '#drinkSection',
+  el: '#app',
   data: function(){
     return{
       newItem:'',
-      currentDrink:[],
-      drinkList:[],
-      strDrink:'',
-      strIngredient1:'',
-      strIngredient2:'',
-      strIngredient3:'',
+      items:[],
+      showSingleDrink:false,
+      activeDrink:{}
+
+  
     }
   },
 
 
 
-  methods: {
 
+   // name: this.strDrink,
+   //            img: this.strDrinkThumb,
+   //            ingredient1: this.strIngredient1,
+   //            ingredient2: this.strIngredient2,
+   //            ingredient3: this.strIngredient3,
     //search cocktail
 
-    searchDrink(){ 
-      fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.newItem}`)
-      .then(response => response.json())
-      .then(data => {
- 
-        this.drinkList = data['drinks'];
-      });
-    },
   
-    displayInfo(cocktail,index){
-      this.strDrink = this.drinkList[index];
-      //displays drink name
-      console.log(this.strDrink['strDrink']);
-      this.currentDrink.push(this.drinkList[index]);
-      console.log(this.currentDrink);
-      console.log(this.drinkList);
-      document.querySelector('.card').style.display = 'block';
-    },
-   
+ 
+    methods: {
+        searchItem: function () {
+        console.log(`Search is: ${this.newItem}`);
+          fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.newItem}`)
+          .then(response => response.json())
+          .then(data => {
+            this.items = data.drinks;
+           
+          });
+         
+     
+        },
+
+  displayDrink: function (drinkId) {
+    console.log(`Drink ID is: ${drinkId}`);
+    var that = this;
+
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
+        .then(response => response.json())
+        .then(data => {
+          that.activeDrink = data.drinks[0];
+          that.showSingleDrink = true;
+          that.activeDrink.ingredients = [];
+
+          for(var i=1; i<=15; i++) {
+              if(that.activeDrink['strIngredient' +i] !== null) {
+                  var ingred = that.activeDrink['strIngredient' + i];
+                  var amount = that.activeDrink['strMeasure' + i];
+
+                  var ing = {
+                      amount:amount,
+                      ing:ingred
+                  }
+                  that.activeDrink.ingredients.push(ing)
+              }
+            }
+            console.log(that.activeDrink);
+        });
+      }
   }
+
+
+   
+      
+   
   
 });
-*/
+

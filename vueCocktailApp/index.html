@@ -4,31 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue Cocktail App</title>
+    <title>Vue Cocktail App</title>    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="app">
+    
+  
     <h1>Cocktails</h1>
-    <input v-model="newItem" @keyup.enter="searchItem" placeholder="Search drink..." />
-    <button id="btn" @click="searchItem" :disabled="newItem.length  === 0">Search</button>
-
-   
-
+  
+  <div class="inputarea">    
+    <input v-model="newItem" type="text" @keyup.enter="searchItem" placeholder="Search drink..." />
+    <button id="btn" @click="searchItem" :disabled="newItem.length === 0">Search</button>
+  </div>
     <section id="drinksection">
-        <!-- <div class="card">
+      
+        <div v-if="items.length">
+        <ul v-if="items.length">
+            <li @click="displayDrink(drink.idDrink)" v-for="drink in items" :key="drink.idDrink">
+                <img :src="drink.strDrinkThumb">
+                {{drink.strDrink}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="overlay" v-if="showSingleDrink">
+        <div style="width:80%; padding:50px;">
+            <h3>{{activeDrink.strDrink}}</h3>
+            <img style="max-width:150px;" :src="activeDrink.strDrinkThumb"/>
+            <h4>Ingredients:</h4>
             <ul>
-                <li v-for="item in currentDrink" v-bind:key="item">
-                    
-                    <h1>{{ item.strDrink }}</h1>
-                    <h2>Ingredients:</h2>
-                    <h3>{{ item.strIngredient1 }}</h3>
-                    <h3>{{ item.strIngredient2 }}</h3>
-                    <h3>{{ item.strIngredient3 }}</h3>
+                <li v-for="ing in activeDrink.ingredients" :key="ing.ing">
+                    {{ing.amount}} - {{ing.ing}}
                 </li>
             </ul>
-         </div>-->
+            <h4>Instructions:</h4>
+            <p class="directions">{{activeDrink.strInstructions}}</p>
+            <button @click="showSingleDrink = false">Close</button>
+        </div>
+    </div>
+
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+</div>
     <script src="cocktails.js"></script> 
 </body>
 </html>
