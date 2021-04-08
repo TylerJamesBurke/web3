@@ -76,7 +76,7 @@ body {
         display: flex;
         flex-direction: column; 
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
     }
   #drinksection div ul{
     padding-inline-start: 0px;
