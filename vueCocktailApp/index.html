@@ -7,13 +7,21 @@
     <title>Vue Cocktail App</title>    
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <div id="app">
     
-  
-    <h1>Cocktails</h1>
-  
+    <div class="titleArea" style="display: flex; 
+                                flex-direction: row;">
+        <h1>The Perfect Cocktail</h1>
+        <img style=" width:28px;
+                     height: auto;
+                     margin-left: 10px;"
+                      src="../vueCocktailApp/cocktailicon.svg">
+    </div>
   <div class="inputarea">    
     <input v-model="newItem" type="text" @keyup.enter="searchItem" placeholder="Search drink..." />
     <button id="btn" @click="searchItem" :disabled="newItem.length === 0">Search</button>
@@ -22,26 +30,36 @@
       
         <div v-if="items.length">
         <ul v-if="items.length">
-            <li @click="displayDrink(drink.idDrink)" v-for="drink in items" :key="drink.idDrink">
+            <li style="background: #4fc08d; 
+                       margin-bottom: 15px;
+                       box-shadow: 1px 1px 15px -2px #07070730;
+                       border-radius: 10px;
+                       padding: 0px 0px 20px 0px;
+                       color: #fff;"
+                @click="displayDrink(drink.idDrink)" v-for="drink in items" :key="drink.idDrink">
                 <img :src="drink.strDrinkThumb">
-                {{drink.strDrink}}
+                <span style="margin-left: 20px;">{{drink.strDrink}}</span>
             </li>
         </ul>
     </div>
 
     <div class="overlay" v-if="showSingleDrink">
         <div style="width:80%; padding:50px;">
+            <button @click="showSingleDrink = false">Close</button>
+            <div class="innerarea">
             <h3>{{activeDrink.strDrink}}</h3>
             <img style="max-width:150px;" :src="activeDrink.strDrinkThumb"/>
             <h4>Ingredients:</h4>
-            <ul>
-                <li v-for="ing in activeDrink.ingredients" :key="ing.ing">
-                    {{ing.amount}} - {{ing.ing}}
-                </li>
-            </ul>
+            <div style="background-color:#fff; border-radius: 10px; padding: 10px;">
+                <ul class="info">
+                    <li style="margin: 5px; padding: 5px; opacity: .5; "v-for="ing in activeDrink.ingredients" :key="ing.ing">
+                        {{ing.amount}} - {{ing.ing}}
+                    </li>
+                </ul>
+            </div>
             <h4>Instructions:</h4>
-            <p class="directions">{{activeDrink.strInstructions}}</p>
-            <button @click="showSingleDrink = false">Close</button>
+            <p style="line-height: 1.3em;"class="directions">{{activeDrink.strInstructions}}</p>
+            </div>
         </div>
     </div>
 
